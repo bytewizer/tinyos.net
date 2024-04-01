@@ -1,0 +1,137 @@
+{
+    "version": "2.0.0",
+    "options": {
+        "env": {
+            "DOTNET_NOLOGO": "true",
+            "DOTNET_CLI_TELEMETRY_OPTOUT": "true",
+            "DOTNET_SKIP_FIRST_TIME_EXPERIENCE": "true"
+        }
+    },
+    "tasks": [
+        {
+            "label": "build",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build-debug",
+                "mkdir",
+                "deploy-debug",
+                "chmod"
+            ],
+        },
+        {
+            "label": "release",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build-release",
+                "clean",
+                "mkdir",
+                "deploy-release",
+                "chmod"
+            ],
+        },
+        {
+            "label": "build-debug",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "-r",
+                "${config:dotnet.rid}",
+                "${workspaceFolder}/${config:dotnet.project}.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "--self-contained"
+            ],
+            "problemMatcher": "$msCompile",
+        },
+        {
+            "label": "build-release",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "-c",
+                "Release",
+                "-r",
+                "${config:dotnet.rid}",
+                "${workspaceFolder}/${config:dotnet.project}.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "-p:PublishTrimmed=false",
+                "-p:PublishSingleFile=false",
+                "-p:PublishReadyToRun=false",
+                "--self-contained"
+            ],
+            "problemMatcher": "$msCompile",
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "${workspaceFolder}/${config:dotnet.project}.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "deploy-debug",
+            "type": "shell",
+            "command": "scp",
+            "args": [
+                "-r",
+                "bin/Debug/${config:dotnet.version}/${config:dotnet.rid}/*",
+                "${config:remote.user}@${config:remote.host}:\"${config:remote.path}/${workspaceFolderBasename}\""
+            ],
+            "problemMatcher": [],
+        },
+        {
+            "label": "deploy-release",
+            "type": "shell",
+            "command": "scp",
+            "args": [
+                "-r",
+                "bin/Release/${config:dotnet.version}/${config:dotnet.rid}/publish/*",
+                "${config:remote.user}@${config:remote.host}:\"${config:remote.path}/${workspaceFolderBasename}\""
+            ],
+            "problemMatcher": [],
+        },
+        {
+            "label": "mkdir",
+            "type": "shell",
+            "command": "ssh",
+            "args": [
+                "${config:remote.user}@${config:remote.host}",
+                "mkdir -p ${config:remote.path}/${workspaceFolderBasename}"
+            ],
+            "problemMatcher": [],
+        },
+        {
+            "label": "chmod",
+            "type": "shell",
+            "command": "ssh",
+            "args": [
+                "${config:remote.user}@${config:remote.host}",
+                "chmod 777 ${config:remote.path}/${workspaceFolderBasename}/${config:dotnet.project}"
+            ],
+            "problemMatcher": [],
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "ssh",
+            "args": [
+                "${config:remote.user}@${config:remote.host}",
+                "rm -rf ${config:remote.path}/${workspaceFolderBasename}/*"
+            ],
+            "problemMatcher": [],
+        },
+    ],
+    "presentation": {
+        "revealProblems": "onProblem",
+        "showReuseMessage": false
+    },
+}

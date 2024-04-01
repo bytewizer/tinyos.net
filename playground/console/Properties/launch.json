@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "adapter": "ssh",
+    "adapterArgs": "tinyos@tinyos ~/.vsdbg/vsdbg --interpreter=vscode",
+    "configurations": [
+        {
+            "name": ".NET Core Launch",
+            "type": "coreclr",
+            "cwd": "~/console",
+            "program": "Project",
+            "request": "launch"
+        }
+    ]
+}

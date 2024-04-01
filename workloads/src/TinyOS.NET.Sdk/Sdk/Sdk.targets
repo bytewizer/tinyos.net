@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<Import Project="$(MSBuildThisFileDirectory)..\build\TinyOS.NET.Sdk.targets"/>
+
+	<!-- Implicit bottom import -->
+	<Import Sdk="Microsoft.NET.Sdk" Project="Sdk.targets" />
+
+	<PropertyGroup>
+		<BuildDependsOn>$(BuildDependsOn);RemoteDeploy</BuildDependsOn>
+		<CleanDependsOn>$(ClenaDependsOn);RemoteClean</CleanDependsOn>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<_SdkTasksAssembly>$(MSBuildThisFileDirectory)..\tasks\netstandard2.0\TinyOS.NET.Sdk.dll</_SdkTasksAssembly>
+	</PropertyGroup>
+
+	<UsingTask TaskName="DeployTask" AssemblyFile="$(_SdkTasksAssembly)" />
+	<UsingTask TaskName="CleanTask" AssemblyFile="$(_SdkTasksAssembly)" />
+
+	<Target Name="RemoteDeploy">
+		<ItemGroup>
+			<_SourceFiles Include="$(MSBuildProjectDirectory)\$(OutputPath)**\*"/>
+		</ItemGroup>
+		<DeployTask SourceFiles="@(_SourceFiles)" RemotePath="$(RemoteCopyPath)" Host="$(RemoteHost)" Username="$(RemoteUsername)" Password="$(RemotePassword)"/>
+	</Target>
+
+	<Target Name="RemoteClean">
+		<CleanTask RemotePath="$(RemoteCopyPath)" Host="$(RemoteHost)" Username="$(RemoteUsername)" Password="$(RemotePassword)"/>
+	</Target>
+
+</Project>

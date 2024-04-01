@@ -1,0 +1,14 @@
+{
+    "files.exclude": {
+        "**/obj/": true,
+        "**/bin/": true
+    },
+    "remote.user": "tinyos",
+    "remote.host": "tinyos",
+    "remote.port": "22",
+    "remote.path": "/home/tinyos",
+    "dotnet.version": "net8.0",
+    "dotnet.rid": "linux-x64",
+    "dotnet.path": "/usr/share/dotnet",
+    "dotnet.project": "Project"
+}

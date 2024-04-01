@@ -1,0 +1,28 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"diffEditor.ignoreTrimWhitespace": false,
+		"editor.acceptSuggestionOnEnter": "off",
+		"editor.bracketPairColorization.enabled": true,
+		"editor.emptySelectionClipboard": false,
+		"editor.formatOnPaste": true,
+		"editor.formatOnSave": true,
+		"editor.rulers": [
+			80
+		],
+		"editor.tabSize": 2,
+		"files.insertFinalNewline": true,
+		"files.trimFinalNewlines": true,
+		"telemetry.enableTelemetry": false,
+		"workbench.editor.highlightModifiedTabs": true,
+		"remote.extensionKind": {
+			"ms-vscode-remote.remote-ssh": [
+				"ui"
+			]
+		},
+	}
+}

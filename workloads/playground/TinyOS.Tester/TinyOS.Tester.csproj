@@ -1,0 +1,50 @@
+﻿<Project Sdk="TinyOS.NET.Sdk/1.0.0">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>	  
+  </PropertyGroup>
+
+	<!--<Target Name="MyCode" BeforeTargets="Compile">
+		<Message Text="Inside BeforeCompile" Importance="high"/>
+	</Target>
+
+	<Target Name="MyCode1" AfterTargets="Compile">
+		<Message Text="Inside AfterCompile" Importance="high"/>
+	</Target>
+	
+	<Target Name="MyCode2" BeforeTargets="Build">
+		<Message Text="Inside BeforeBuild" Importance="high"/>
+	</Target>
+	
+	<Target Name="MyCode3" AfterTargets="Build">
+		<Message Text="Inside AfterBuild" Importance="high"/>
+	</Target>
+
+	<Target Name="MyCode4" BeforeTargets="Publish">
+		<Message Text="Inside BeforePublish" Importance="high"/>
+	</Target>
+
+	<Target Name="MyCode5" AfterTargets="Publish">
+		<Message Text="Inside AfterPublish" Importance="high"/>
+	</Target>
+
+	<Target Name="MyCode6" BeforeTargets="Rebuild">
+		<Message Text="Inside BeforeRebuild" Importance="high"/>
+	</Target>
+
+	<Target Name="MyCode7" AfterTargets="Rebuild">
+		<Message Text="Inside AfterRebuild" Importance="high"/>
+	</Target>
+
+	<Target Name="MyCode8" BeforeTargets="CoreClean">
+		<Message Text="Inside BeforeClean" Importance="high"/>
+	</Target>
+
+	<Target Name="MyCode9" AfterTargets="CoreClean">
+		<Message Text="Inside AfterClean" Importance="high"/>
+	</Target>-->
+	
+</Project>

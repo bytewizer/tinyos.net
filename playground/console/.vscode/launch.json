@@ -1,0 +1,89 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${config:dotnet.project}",
+            "stopAtEntry": false,
+            "justMyCode": true,
+            "cwd": "${config:remote.path}/${workspaceFolderBasename}",
+            "pipeTransport": {
+                "pipeCwd": "${workspaceRoot}",
+                "pipeProgram": "ssh",
+                "pipeArgs": [
+                    "-T",
+                    "-q",
+                    "-p",
+                    "${config:remote.port}",
+                    "-o",
+                    "StrictHostKeyChecking=no",
+                    "-o",
+                    "UserKnownHostsFile /dev/null",
+                    "${config:remote.user}@${config:remote.host}"
+                ],
+                "pipeEnv": {
+                    "DOTNET_MODIFIABLE_ASSEMBLIES": "debug",
+                },
+                "debuggerPath": "/home/tinyos/.vsdbg/vsdbg --engineLogging=/var/log/vsdbg.log"
+            },
+            "sourceFileMap": {
+                "${config:remote.user}/${workspaceFolderBasename}/": "${workspaceRoot}"
+            },
+            "logging": {
+                "diagnosticsLog": {
+                    "protocolMessages": false
+                },
+                "moduleLoad": false
+            },
+            "env": {
+                "DOTNET_NOLOGO": "true",
+                "DOTNET_ENVIRONMENT": "Development",
+                "DOTNET_CLI_TELEMETRY_OPTOUT": "true",
+                "DOTNET_SKIP_FIRST_TIME_EXPERIENCE": "true"
+            }
+        },
+        {
+            "name": "Release",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "release",
+            "program": "${config:dotnet.project}",
+            "stopAtEntry": false,
+            "args": [
+                "${config:remote.path}/${workspaceFolderBasename}/${config:dotnet.project}.dll"
+            ],
+            "cwd": "${config:remote.path}/${workspaceFolderBasename}",
+            "pipeTransport": {
+                "pipeCwd": "${workspaceRoot}",
+                "pipeProgram": "ssh",
+                "pipeArgs": [
+                    "-T",
+                    "-q",
+                    "-p",
+                    "${config:remote.port}",
+                    "-o",
+                    "StrictHostKeyChecking=no",
+                    "-o",
+                    "UserKnownHostsFile /dev/null",
+                    "${config:remote.user}@${config:remote.host}"
+                ],
+                "debuggerPath": "/home/tinyos/.vsdbg/vsdbg --engineLogging=/var/log/vsdbg.log"
+            },
+            "sourceFileMap": {
+                "${config:remote.path}/${workspaceFolderBasename}/": "${workspaceRoot}"
+            },
+            "logging": {
+                "moduleLoad": false
+            },
+            "env": {
+                "DOTNET_NOLOGO": "true",
+                "DOTNET_ENVIRONMENT": "Production",
+                "DOTNET_CLI_TELEMETRY_OPTOUT": "true",
+                "DOTNET_SKIP_FIRST_TIME_EXPERIENCE": "true"
+            }
+        },
+    ],
+}

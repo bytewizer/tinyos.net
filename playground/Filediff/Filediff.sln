@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34408.163
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filediff", "Filediff.csproj", "{B4ABAB30-A681-48E5-A81E-1762FA48D3ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4ABAB30-A681-48E5-A81E-1762FA48D3ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4ABAB30-A681-48E5-A81E-1762FA48D3ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4ABAB30-A681-48E5-A81E-1762FA48D3ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4ABAB30-A681-48E5-A81E-1762FA48D3ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1E38709A-0E24-49F7-86DC-D4AD3B89D7C6}
+	EndGlobalSection
+EndGlobal
